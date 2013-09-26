@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	{% block css %} <link rel="stylesheet" href="/media/css/estilo.css">{% endblock %}
+</head>
+<body>
+	<div id="contenido">
+		<header>
+			<img src="/media/images/djangopowered.gif"/>
+			<hgroup>
+				<h1>Plataforma Ayremin</h1>
+			</hgroup>
+			<nav>
+				<ul>								
+					<li><a href="{% url vista_contacto %}">Contacto</a></li>
+					{% if user.is_authenticated %}
+						<li><a href="{% url vista_hojadevida %}">Hoja de vida</a></li>
+						<li><a href="{% url vista_info %}">Mi informacion</a></li>
+						<li><a href="{% url vista_logout %}">Cerrar sesion</a></li>
+					{% else %}
+						<li><a href="{% url vista_login %}">login</a></li>
+					{% endif %}
+				</ul>
+			</nav>	
+		</header>
+		<div id="respuesta">
+			<section>
+				<article>
+					{% block content %}
+					{% endblock %}	
+				</article>		
+			</section>
+		</div>
+		<footer>
+			The3Ballsoft 2013
+		</footer>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Asignaturas {% endblock %}
+{% block content %}
+<h1>Asignaturas:</h1>
+	{% if user.is_authenticated %}
+		{% if materias %} 
+			{% for i in materias %}
+				<p><h3>{{i.materia.nombre}}</h3>
+				Creditos: {{i.materia.creditos }} - Semestre: {{i.semestre}} - Nota final: {{i.nota}} </p>
+			{% endfor %}
+		{% else %}
+			<h2>No Has matriculado ninguna materia</h2>
+		{% endif%}
+	{% else %}
+		<h2>Debe logearse primero</h2>
+	{% endif %}
+
+{% endblock %}
